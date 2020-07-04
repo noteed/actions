@@ -12,7 +12,7 @@ let
     rev = design-system-version;
     sha256 = "1za6hf9ba7wvd0d2y4g0zn7vnvkfqmhpgq5sipc7yj7cxq24b941";
   };
-  inherit (import design-system {}) template lua-filter static;
+  inherit (import design-system {}) template lua-filter;
 
   to-html = src: pkgs.runCommand "html" {} ''
     ${pkgs.pandoc}/bin/pandoc \
@@ -38,9 +38,6 @@ in rec
 
   html.all = pkgs.runCommand "all" {} ''
     mkdir -p $out
-    cp -r ${static} $out/static
     cp ${html.index} $out/index.html
   '';
-
-  inherit static;
 }
