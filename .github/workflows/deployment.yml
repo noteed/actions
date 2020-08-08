@@ -20,3 +20,11 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./result
+    - run: cp -r $(readlink -f ./result) for-b2
+    - name: Upload data to Backblaze
+      uses: noteed/backblaze-b2-action@master
+      env:
+        SOURCE_DIR: ./for-b2
+        B2_BUCKET_PATH: 'b2://noteed-actions/site/'
+        B2_APPKEY_ID: ${{ secrets.B2_APPKEY_ID }}
+        B2_APPKEY: ${{ secrets.B2_APPKEY }}
