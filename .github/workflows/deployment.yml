@@ -20,11 +20,16 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./result
-    - run: cp -r $(readlink -f ./result) for-b2
-    - name: Upload data to Backblaze
-      uses: noteed/backblaze-b2-action@master
-      env:
-        SOURCE_DIR: ./for-b2
-        B2_BUCKET_PATH: 'b2://noteed-actions/site/'
-        B2_APPKEY_ID: ${{ secrets.B2_APPKEY_ID }}
-        B2_APPKEY: ${{ secrets.B2_APPKEY }}
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'
+    - name: Install Backblaze B2 command-line tool
+      run: |
+        python -m pip install --upgrade pip
+        pip install --quiet --no-cache-dir b2==2.0.2
+    - name: Sync to Backblaze B2
+      run: |
+        b2 authorize-account ${{ secrets.B2_APPKEY_ID }} ${{ secrets.B2_APPKEY }}
+        b2 sync --delete --replaceNewer ./result/ b2://noteed-actions/site/
+        b2 clear-account

@@ -15,4 +15,10 @@ private. The bucket name could be a secret.
 Here is the URL for the secrets of this particular repository:
 https://github.com/noteed/actions/settings/secrets
 
-It seems the application key should have read-write access to the bucket.
+It seems the application key should have read-write access (write access is not
+enough) to the bucket.
+
+Saving to Backblaze B2 can be done with this [GitHub
+Action](https://github.com/noteed/backblaze-b2-action) but since it runs in a
+container, it's hard to give it the `./result` symlink to upload. Using the
+`b2` command directly is easier.
