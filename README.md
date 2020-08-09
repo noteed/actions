@@ -7,6 +7,7 @@ simple GitHub Actions workflow:
 
 - it builds an HTML page using Nix,
 - push it to [GitHub Pages](https://noteed.github.io/actions/),
+- cache the result to a Backblaze B2 bucket,
 - save the result to a Backblaze B2 bucket.
 
 The name of the Backblaze B2 bucket is `noteed-actions` and the bucket is
@@ -16,7 +17,8 @@ Here is the URL for the secrets of this particular repository:
 https://github.com/noteed/actions/settings/secrets
 
 It seems the application key should have read-write access (write access is not
-enough) to the bucket.
+enough) to the bucket (for the `save` step above, maybe also for the `cache`
+step).
 
 Saving to Backblaze B2 can be done with this [GitHub
 Action](https://github.com/noteed/backblaze-b2-action) but since it runs in a
