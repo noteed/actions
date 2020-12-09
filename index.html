@@ -1,12 +1,12 @@
 <!DOCTYPE HTML>
 <html><head><meta charset="utf-8"><title></title><meta name="viewport" content="width=device-width, initial-scale=1.0"><style>@import url(/static/css/ibm-plex.css);@import url(/static/css/tachyons.min.v4.11.1.css);@import url(/static/css/style.css);@import url(/static/css/styles.css);</style></head><body class="hy-ibm-plex"><div class="flex flex-column justify-between min-height-vh-100 mw8 center pa4 lh-copy"><div><header><nav class="flex justify-between align-items-center lh-copy mb4 pv3"><div><a class="link mr3 black hover-blue" href="/actions">actions</a></div></nav></header><main><article class="mw7"><div class="mb4"><h1 class="f1 lh-title mv2 tracked-tight"></h1></div><h1 class="f1 lh-title mv2 tracked-tight" id="actions">Actions</h1>
 <p><img src="https://github.com/noteed/actions/workflows/deployment/badge.svg" /></p>
-<p>This is a sample <a href="https://github.com/noteed/actions">repository</a> to show a simple GitHub Actions workflow:</p>
+<p>This is a sample <a href="https://github.com/noteed/actions">repository</a> to show a simple GitHub Actions <a href="https://github.com/noteed/actions/blob/main/.github/workflows/deployment.yml">workflow</a>:</p>
 <ul>
 <li>it builds an HTML page using Nix,</li>
 <li>push it to <a href="https://noteed.github.io/actions/">GitHub Pages</a>,</li>
-<li>cache the result to a Backblaze B2 bucket,</li>
-<li>save the result to a Backblaze B2 bucket.</li>
+<li>cache the result to a Backblaze B2 bucket (using <code>nix copy</code>),</li>
+<li>save the result to a Backblaze B2 bucket (using <code>b2 sync</code>).</li>
 </ul>
 <p>The name of the Backblaze B2 bucket is <code>noteed-actions</code> and the bucket is private. The bucket name could be a secret.</p>
 <p>Here is the URL for the secrets of this particular repository: https://github.com/noteed/actions/settings/secrets</p>
